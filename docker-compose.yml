@@ -1,0 +1,21 @@
+version: "3"
+services:
+  webapp:
+    build: ./app
+    container_name: "webapp"
+    ports:
+      - "8080:8080"
+    environment:
+      REDIS_URL: redis://redis:6379
+      MONGO_URL: mongodb://root:root@mongo:27017
+    depends_on:
+      - redis
+      - mongo    
+  redis:
+    image: "redis:6.2.6-buster"
+    ports:
+      - "6379:6379"
+  mongo:
+    image: "mongo:4.4-rc-focal"
+    ports:
+      - "27017:27017"

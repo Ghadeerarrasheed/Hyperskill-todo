@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <form class="add-task-form" method="POST" action="/add">
+            <input type="text" name="task" placeholder="Add a new task" required>
+            <button type="submit">Add</button>
+        </form>
+        <ul class="todo-list">
+            {% for task in todo_list %}
+                <li>
+                    {{ task.task }}
+                    <a href="/delete/{{ task._id }}" class="delete-task"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
